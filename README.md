@@ -27,10 +27,9 @@ DB_PORT=5432
 CREATE TABLE posts (
 id SERIAL PRIMARY KEY,
 name VARCHAR(255),
-author VARCHAR(255),
-image_url VARCHAR(255),
-isbn VARCHAR(17),
-release_date DATE
+band VARCHAR(255),
+record VARCHAR(17),
+rating NUMBER,
 );
 ```
 

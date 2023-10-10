@@ -1,10 +1,10 @@
-import Books from './components/ElephantSQL';
+import Album from './components/ElephantSQL';
 
 function App() {
   return (
     <>
-      <h1>BOOKS</h1>
-      <Books />
+      <h1>Album</h1>
+      <Album />
     </>
   );
 }

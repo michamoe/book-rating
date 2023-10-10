@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import CreateBook from './CreateBook';
+import CreateAlbum from './CreateAlbum';
 import axios from 'axios';
 
-function Books() {
-  const [books, setBooks] = useState([]);
+function Album() {
+  const [album, setAlbum] = useState([]);
 
-  const fetchBooks = () => {
+  const fetchAlbum = () => {
     axios
       .get('https://example-xtvq.onrender.com/posts')
       .then((response) => {
-        setBooks(response.data);
+        setAlbum(response.data);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -17,31 +17,30 @@ function Books() {
   };
 
   useEffect(() => {
-    fetchBooks();
+    fetchAlbum();
   }, []);
 
-  const handleDelete = async (bookId) => {
-    await axios.delete(`https://example-xtvq.onrender.com/posts/${bookId}`);
-    setBooks((prevBooks) => prevBooks.filter((book) => book.id !== bookId));
-    alert('Book is successfully deleted');
+  const handleDelete = async (albumId) => {
+    await axios.delete(`https://example-xtvq.onrender.com/posts/${albumId}`);
+    setAlbum((prevAlbum) => prevAlbum.filter((album) => album.id !== albumId));
+    alert('Album is successfully deleted');
   };
 
   return (
     <div>
-      <CreateBook setBooks={setBooks} />
-      {books.map((book) => (
-        <div key={book.id}>
-          <h2>{book.name}</h2>
-          <h3>Author: {book.author}</h3>
-          <img src={book.image_url} alt={book.name} />
-          <p>ISBN: {book.isbn}</p>
-          <p>Release Date: {book.release_date}</p>
-          {/* <button onClick={() => handleEdit(book.id)}>Edit Book</button> */}
-          <button onClick={() => handleDelete(book.id)}>Delete Book</button>
+      <CreateAlbum setAlbum={setAlbum} />
+      {album.map((album) => (
+        <div key={album.id}>
+          <h2>{album.name}</h2>
+          <h3>Band: {album.band}</h3>
+          <h3>Record: {album.record}</h3>
+          <h3>Rating: {album.rating}</h3>
+          {/* <button onClick={() => handleEdit(album.id)}>Edit album</button> */}
+          <button onClick={() => handleDelete(album.id)}>Delete Album</button>
         </div>
       ))}
     </div>
   );
 }
 
-export default Books;
+export default Album;
